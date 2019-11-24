@@ -1,0 +1,2 @@
+recursive-include dgaintel *.py
+recursive-include dgaintel *.h5
