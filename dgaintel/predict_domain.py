@@ -24,3 +24,12 @@ def get_prediction(domain_name, model=model, mapping=char2idx):
   prediction = model(vec).numpy().sum()
 
   return prediction
+
+def main():
+  p = get_prediction('microsoft.com')
+  print('\nmicrosoft.com has a probability of {} of being DGA'.format(p))
+  p = get_prediction('vlurgpeddygdy.com')
+  print('vlurgpeddygdy.com has a probability of {} of being DGA'.format(p))
+
+if __name__ == '__main__':
+  main()
