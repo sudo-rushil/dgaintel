@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: dgaintel
+Version: 0.2
+Summary: predict whether a domain is genuine or DGA.
+Home-page: https://github.com/sudo-rushil/dgaintel
+Author: Rushil Mallarapu
+Author-email: rushil.mallarapu@gmail.com
+License: MIT
+Download-URL: https://github.com/sudo-rushil/dgaintel/archive/v0.2.tar.gz
+Description: UNKNOWN
+Keywords: DGA,Domain,Domain Generation,Domain Classifier,Deep Learning,AI,RNN,LSTM,CNN-LSTM,CNN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7

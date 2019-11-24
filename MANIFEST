@@ -3,3 +3,4 @@ setup.cfg
 setup.py
 dgaintel/__init__.py
 dgaintel/predict_domain.py
+dgaintel/domain_classifier_model.h5
