@@ -11,7 +11,8 @@ setup(
   author_email = 'rushil.mallarapu@gmail.com',      # Type in your E-Mail
   url = 'https://github.com/sudo-rushil/dgaintel',   # Provide either the link to your github or to your website
   download_url = 'https://github.com/sudo-rushil/dgaintel/archive/v0.1.tar.gz',    # I explain this later on
-  keywords = ['DGA', 'Domain', 'Domain Generation', 'Domain Classifier', 'Deep Learning', 'AI', 'RNN', 'LSTM', 'CNN-LSTM', 'CNN'],   # Keywords that define your package best
+  keywords = ['DGA', 'Domain', 'Domain Generation', 'Domain Classifier', 'Deep Learning', 'AI', 'RNN', 'LSTM', 'CNN-LSTM', 'CNN'],
+  include_package_data=True
   install_requires=[            # I get to this in a second
           'numpy',
           'tensorflow',
