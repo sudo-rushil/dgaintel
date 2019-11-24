@@ -15,3 +15,31 @@ DGAIntel is designed for use with Python 3 only. It has only two requirements:
 
     - TensorFlow
     - Numpy
+
+## Installation
+
+To download dgaintel, simply use Pypi via pip.
+```sh
+$ pip install dgaintel
+```
+<!-- 
+Verify your installation worked by running
+```Python
+>>> import dgaintel
+>>> dgaintel.get_prediction('microsoft.com')
+``` -->
+
+## Using it
+First, import DGAIntel.
+
+```Python
+import dgaintel
+```
+
+Now, to get the predicted probability of a domain name being DGA, simply run
+
+```Python
+dgaintel.get_prediction('<DOMAIN NAME>')
+```
+
+That's all there is to it!

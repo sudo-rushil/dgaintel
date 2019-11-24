@@ -1,1 +1,1 @@
-from predict_domain import get_prediction
+from dgaintel.predict_domain import get_prediction

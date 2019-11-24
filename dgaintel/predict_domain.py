@@ -1,7 +1,12 @@
-import tensorflow as tf 
+from tensorflow.keras.models import load_model
 import numpy as np
+import h5py
+import os
 
-model = tf.keras.models.load_model('domain_classifier_model.h5')
+# saved_model_path = os.path.join(os.getcwd(), 'domain_classifier_model.h5')
+# saved_model = h5py.File(saved_model_path)
+model = load_model('./dga_model')
+model = None
 char2idx = {'-': 0, '.': 1, '0': 2, '1': 3, '2': 4, '3': 5, 
             '4': 6, '5': 7, '6': 8, '7': 9, '8': 10, '9': 11, 
             '_': 12, 'a': 13, 'b': 14, 'c': 15, 'd': 16, 'e': 17, 
@@ -11,6 +16,7 @@ char2idx = {'-': 0, '.': 1, '0': 2, '1': 3, '2': 4, '3': 5,
             'x': 36, 'y': 37, 'z': 38}
 
 def get_prediction(domain_name, model=model, mapping=char2idx):
+  model = load_model('domain_classifier_model.h5', compile=False)
   domain_name = domain_name.lower()
 
   name_vec = []
