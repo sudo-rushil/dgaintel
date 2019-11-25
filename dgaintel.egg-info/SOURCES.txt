@@ -4,7 +4,7 @@ setup.cfg
 setup.py
 dgaintel/__init__.py
 dgaintel/domain_classifier_model.h5
-dgaintel/predict_domain.py
+dgaintel/predict.py
 dgaintel.egg-info/PKG-INFO
 dgaintel.egg-info/SOURCES.txt
 dgaintel.egg-info/dependency_links.txt
