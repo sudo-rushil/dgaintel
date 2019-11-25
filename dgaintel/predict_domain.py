@@ -2,7 +2,9 @@ from tensorflow.keras.models import load_model
 import numpy as np
 import os
 
-saved_model_path = os.path.join(os.getcwd(), 'dgaintel/domain_classifier_model.h5')
+dir_path = os.path.dirname(os.path.abspath(__file__))
+saved_model_path = os.path.join(dir_path, 'domain_classifier_model.h5')
+
 model = load_model(saved_model_path)
 char2idx = {'-': 0, '.': 1, '0': 2, '1': 3, '2': 4, '3': 5, 
             '4': 6, '5': 7, '6': 8, '7': 9, '8': 10, '9': 11, 

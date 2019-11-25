@@ -1,7 +1,9 @@
+MANIFEST.in
 README.md
 setup.cfg
 setup.py
 dgaintel/__init__.py
+dgaintel/domain_classifier_model.h5
 dgaintel/predict_domain.py
 dgaintel.egg-info/PKG-INFO
 dgaintel.egg-info/SOURCES.txt
