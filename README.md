@@ -176,5 +176,3 @@ get_prob(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com']) # [('microsoft
 get_prob('domains.txt') # [('microsoft.com', 0.00050), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.97601)]
 get_prob(['microsoft.com', 'wikipedia.com', 'google.com'], raw=True) # array([0.00050, 0.00033, 0.0.97601], dtype=float32)
 ```
-
-# Learn More
