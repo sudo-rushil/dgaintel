@@ -65,7 +65,9 @@ print(raw_probs)
 ```
 
 > 0.00050
+
 > [('microsoft.com', 0.00050), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.97601)]
+
 > [0.00050845, 0.00033092, 0.00144754]
 
 ### Predict by file
@@ -90,7 +92,9 @@ get_prediction('domains.txt', to_file='domain_predictions.txt')
 ```
 
 > microsoft.com is genuine with probability 0.00050
+
 > wikipedia.com is genuine with probability 0.00033
+
 > vlurgpeddygdy.com is DGA with probability 0.97601
 
 If you read the new file `domain_predictions.txt`, you will see the following.
@@ -132,10 +136,15 @@ analysis = analyze('microsoft.com', print=False)
 ```
 
 > name: microsoft.com
+
 > dga: False
+
 > registrar: MarkMonitor Inc.
+
 > creation date: 1991-05-02 04:00:00
+
 > expiration date: 2021-05-03 04:00:00
+
 
 # Documentation
 DGAIntel has support for polymorphism; to input domains to run predictions on, you can use a single domain name, a list of domain names, or a text file with line-separated domain names. The text file has the format

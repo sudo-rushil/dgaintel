@@ -1,1 +1,1 @@
-from dgaintel.predict import *
+from dgaintel.predict import get_prob, get_prediction
