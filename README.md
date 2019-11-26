@@ -156,13 +156,54 @@ vlurgpeddygdy.com
 ...
 ```
 
-## API 
+Additionally, the Tensorflow Keras model running in the backend supports input batching, meaning there is a significant increase in speed for running predictions on lists or files rather than individual domains. This was tested in Jupyter.
+
 ```Python
-from dgaintel import get_prediction, get_prob
+from dgaintel import get_prob
+
+# List of 10 domain names
+l = ['microsoft.com', 'squarespace.com', 'hsfkjdshfjasdhfk.com', 'fdkhakshfda.com', 'foilfencersarebad.com', 'foilfencersarebad.com', 'foilfencersarebad.com', 'discojjfdsf.com', 'fasddafhkj.com', 'wikipedai.com']
 ```
 
+```Python
+# One domain
+%%timeit
+get_prob(l[0])
+```
+
+> 286 ms ± 4.99 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+```Python
+# Ten domains
+%%timeit
+get_prob(l)
+```
+
+> 290 ms ± 7.23 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+```Python
+# Hundred domains
+%%timeit
+get_prob(l*10)
+```
+
+> 333 ms ± 4.71 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+```Python
+# Thousand domains
+%%timeit
+get_prob(l*100)
+```
+
+> 584 ms ± 14.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+This demonstrates that increasing the number of domain names one runs the prediction by 1000x only increases the inference time by less than 2x. Therefore, this model is easily adaptable to large-scale predictions.
+
+## API 
 The `get_prediction` function will either print the predictions or write them to a user-specified file.
 ```Python
+from dgaintel import get_prediction
+
 get_prediction('microsoft.com')
 get_prediction(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com'])
 get_prediction('domains.txt')
@@ -171,6 +212,8 @@ get_prediction('domains.txt', to_file='domain_predictions.txt')
 
 The `get_prob` function will perform the inference and provide the prediction floats. It is helpful if you want to use the prediction scores directly in your workflow.
 ```Python
+from dgaintel import get_prob
+
 get_prob('microsoft.com') # 0.00050851
 get_prob(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com']) # [('microsoft.com', 0.00050), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.0.97601)]
 get_prob('domains.txt') # [('microsoft.com', 0.00050), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.97601)]

@@ -107,7 +107,7 @@ def get_prediction(domains, print=True, to_file=None):
   return preds
 
 def main():
-  get_prediction(['microsoft.com', 'squarespace.com', 'hsfkjdshfjasdhfk.com'])
-
+  get_prediction(['microsoft.com', 'squarespace.com', 'hsfkjdshfjasdhfk.com', 'fdkhakshfda.com', 'foilfencersarebad.com', 'discojjfdsf.com', 'fasddafhkj.com', 'wikipedai.com'])
+  
 if __name__ == '__main__':
   main()
