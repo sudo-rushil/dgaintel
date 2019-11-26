@@ -61,7 +61,7 @@ Output: len(domains) == 1: single probability value
         raw=False: list of tuples of format (domain_name, probability)
         raw=True: np.ndarray of probabilities
 '''
-def get_prob(domains, raw=False):
+def get_prob(domains, raw=False, internal=False):
   vec = np.zeros((len(domains), 82))
 
   for i, domain in enumerate(domains):
@@ -73,24 +73,25 @@ def get_prob(domains, raw=False):
   prob = model(vec).numpy()
   prob = prob.transpose()[0]
 
-  if prob.shape[0] == 1:
-    return prob.sum()
+  if not internal:
+    if prob.shape[0] == 1:
+      return prob.sum()
 
-  if raw:
-    return prob
+    if raw:
+      return prob
 
   return list(zip(domains, list(prob)))
 
 '''
 Wrapper for printing out/writing full predictions on a domain or set of domains; can be called directly
 Input: domain (str), list of domains (list), domains in .txt file (FileObj)
-Output: print to stdout
-        print=False: list of prediction strings (list)
+Output: show to stdout
+        show=False: list of prediction strings (list)
         to_file=<filename>.txt: writes new file at <filename>.txt with predictions 
 '''
-def get_prediction(domains, print=True, to_file=None):
-  raw_probs = get_prob(_inputs(domains))
-  preds = [_get_prediction(domain, prob) for domain, prob in raw_probs]
+def get_prediction(domains, to_file=None, show=True):
+  raw_probs = get_prob(_inputs(domains), internal=True)
+  preds = [_get_prediction(domain, prob=prob) for domain, prob in raw_probs]
 
   if to_file:
     assert os.path.splitext(to_file)[1] == ".txt"
@@ -99,7 +100,7 @@ def get_prediction(domains, print=True, to_file=None):
       outfile.writelines(preds)
     return None
 
-  if print:
+  if show:
     for pred in preds:
       print(pred.strip('\n'))
     return None
