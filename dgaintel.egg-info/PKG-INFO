@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: dgaintel
-Version: 0.9
+Version: 1.0
 Summary: Extremely fast and accurate predictions of whether a domain name is genuine or DGA with deep learning.
 Home-page: https://github.com/sudo-rushil/dgaintel
 Author: Rushil Mallarapu
 Author-email: rushil.mallarapu@gmail.com
 License: MIT
-Download-URL: https://github.com/sudo-rushil/dgaintel/archive/v0.9.tar.gz
+Download-URL: https://github.com/sudo-rushil/dgaintel/archive/v1.0.tar.gz
 Description: # DGA Intel
         
         Using deep learning to detect DGA domains.
