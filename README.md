@@ -60,7 +60,7 @@ probs = get_prob(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com'])
 print(probs)
 
 # To get just the scores
-raw_probs = list(get_prob(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com']))
+raw_probs = list(get_prob(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com'], raw=True))
 print(raw_probs)
 ```
 
@@ -112,17 +112,21 @@ This is an example function that integrates dgaintel with [whois](https://pypi.o
 from dgaintel import get_prob
 from whois import query
 
-def analyze(domain, print=True):
+def analyze(domain, out=True):
     prob = get_prob(domain)
     whois = query(domain)
     dga = False
     if prob >= 0.5: dga = True
 
-    domain_analysis = {'domain_name': domain, 'dga': dga, 'registrar': whois.registrar, 'creation date' : whois.creation_date, 'expiration date': whois.expiration_date}
+    domain_analysis = {'domain_name': domain, 
+                       'dga': dga, 
+                       'registrar': whois.registrar if whois else None, 
+                       'creation date' : whois.creation_date if whois else None, 
+                       'expiration date': whois.expiration_date if whois else None}
 
-    if print:
+    if out:
         print()
-        for key, val in items(domain_analysis):
+        for key, val in domain_analysis.items():
             print('{}: {}'.format(key, val))
         print()
         return None
@@ -132,7 +136,7 @@ def analyze(domain, print=True):
 analyze('microsoft.com')
 
 # Get analysis dictionary in python itself
-analysis = analyze('microsoft.com', print=False)
+analysis = analyze('microsoft.com', out=False)
 ```
 
 > name: microsoft.com
