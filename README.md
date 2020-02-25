@@ -105,7 +105,7 @@ wikipedia.com is genuine with probability 0.00033092446392402053
 vlurgpeddygdy.com is DGA with probability 0.9760094285011292
 ```
 
-### Prediction analysis 
+### Prediction analysis
 This is an example function that integrates dgaintel with [whois](https://pypi.org/project/whois/) for performing basic prediction analysis, which is important for cyber security investigators.
 
 ```Python
@@ -118,10 +118,10 @@ def analyze(domain, out=True):
     dga = False
     if prob >= 0.5: dga = True
 
-    domain_analysis = {'domain_name': domain, 
-                       'dga': dga, 
-                       'registrar': whois.registrar if whois else None, 
-                       'creation date' : whois.creation_date if whois else None, 
+    domain_analysis = {'domain_name': domain,
+                       'dga': dga,
+                       'registrar': whois.registrar if whois else None,
+                       'creation date' : whois.creation_date if whois else None,
                        'expiration date': whois.expiration_date if whois else None}
 
     if out:
@@ -130,7 +130,7 @@ def analyze(domain, out=True):
             print('{}: {}'.format(key, val))
         print()
         return None
-    
+
     return domain_analysis
 
 analyze('microsoft.com')
@@ -148,6 +148,23 @@ analysis = analyze('microsoft.com', out=False)
 > creation date: 1991-05-02 04:00:00
 
 > expiration date: 2021-05-03 04:00:00
+
+
+### Predictions with Whitelisting
+This example shows how the class interface to DGAIntel allows for certain TLDs to be whitelisted, preventing them from raising errors in a given ecosystem.
+
+```Python
+from dgaintel import Intel
+
+intel = Intel(['cloud.com'])
+
+print(intel.get_prob(['www.cloud.com',
+                        'dfsadkcda.cloud.com',
+                        'www.cloud.org',
+                        'www.dkfjsdakfj.org']))
+```
+
+> [('www.cloud.com', 0.0), ('dfsadkcda.cloud.com', 0.0), ('www.cloud.org', 0.00045579672), ('www.dkfjsdakfj.org', 0.99884665)]
 
 
 # Documentation
@@ -203,7 +220,7 @@ get_prob(l*100)
 
 This demonstrates that increasing the number of domain names one runs the prediction by 1000x only increases the inference time by less than 2x. Therefore, this model is easily adaptable to large-scale predictions.
 
-## API 
+## API
 The `get_prediction` function will either print the predictions or write them to a user-specified file.
 ```Python
 from dgaintel import get_prediction
@@ -222,4 +239,15 @@ get_prob('microsoft.com') # 0.00050851
 get_prob(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com']) # [('microsoft.com', 0.00050), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.0.97601)]
 get_prob('domains.txt') # [('microsoft.com', 0.00050), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.97601)]
 get_prob(['microsoft.com', 'wikipedia.com', 'google.com'], raw=True) # array([0.00050, 0.00033, 0.0.97601], dtype=float32)
+```
+
+The `Intel` interface allows DGAIntel to avoid checking certain domains with known TLDs to ensure enterprise functions are not compromised.
+```Python
+from dgaintel import Intel
+
+intel = Intel(['microsoft.com'])
+intel.get_prob('microsoft.com') # 0.0
+intel.get_prob(['microsoft.com', 'wikipedia.com', 'vlurgpeddygdy.com']) # [('microsoft.com', 0.0), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.0.97601)]
+intel.get_prob('domains.txt') # [('microsoft.com', 0.0), ('wikipedia.com', 0.00033), ('vlurgpeddygdy.com', 0.97601)]
+intel.get_prob(['microsoft.com', 'wikipedia.com', 'google.com'], raw=True) # array([0.0, 0.00033, 0.0.97601], dtype=float32)
 ```
