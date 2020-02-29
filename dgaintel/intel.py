@@ -9,7 +9,7 @@ class Intel:
         Whitelist: list of TLDs that the model should always clear.
         '''
         self.whiteset = set(whitelist)
-        self.pattern = r'[a-z]+\.[a-z]+$'
+        self.pattern = re.compile(r'[a-z]+\.[a-z]+$')
 
     def _get_prediction(self, domain, prob):
         if prob >= 0.5:
@@ -25,7 +25,7 @@ class Intel:
         white = set()
 
         for i, domain in enumerate(domains):
-            matches = re.findall(self.pattern, domain.strip('/'))
+            matches = self.pattern.findall(domain.strip('/'))
             assert len(matches) == 1, f'Input error: {domain} is an invalid domain'
 
             if matches[0] in self.whiteset: white.add(i); continue
