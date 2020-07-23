@@ -58,8 +58,7 @@ def get_prob(domains, raw=False, internal=False):
 
     for i, domain in enumerate(domains):
         for j, char in enumerate(domain):
-            if char not in CHAR2IDX: return -1
-            vec[i, j] = CHAR2IDX[char]
+            vec[i, j] = CHAR2IDX[char] if char in CHAR2IDX else -1
 
 
     prob = MODEL(vec).numpy()

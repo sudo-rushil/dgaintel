@@ -9,7 +9,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
   name = 'dgaintel',         # How you named your package folder (MyLib)
   packages = ['dgaintel'],   # Chose the same as "name"
-  version = '2.1',      # Start with a small number and increase it with every change you make
+  version = '2.2',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Extremely fast and accurate predictions of whether a domain name is genuine or DGA with deep learning.',   # Give a short description about your library
   long_description = long_description,
