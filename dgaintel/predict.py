@@ -81,7 +81,10 @@ def get_prediction(domains, to_file=None, show=True):
         show=False: list of prediction strings (list)
         to_file=<filename>.txt: writes new file at <filename>.txt with predictions
     '''
-    raw_probs = get_prob(_inputs(domains), internal=True)
+    if not isinstance(domains, list):
+        domains = _inputs(domains)
+
+    raw_probs = get_prob(domains, internal=True)
     preds = [_get_prediction(domain, prob=prob) for domain, prob in raw_probs]
 
     if to_file:
